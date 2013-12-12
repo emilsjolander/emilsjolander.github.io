@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Android, | Emil Sjölander]]></title>
+  <link href="http://emilsjolander.github.io/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://emilsjolander.github.io/"/>
+  <updated>2013-12-13T00:38:13+01:00</updated>
+  <id>http://emilsjolander.github.io/</id>
+  <author>
+    <name><![CDATA[Emil Sjölander]]></name>
+    <email><![CDATA[sjolander.emil@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Android With Sprinkles]]></title>
+    <link href="http://emilsjolander.github.io/blog/2013/12/13/android-with-sprinkles/"/>
+    <updated>2013-12-13T00:12:27+01:00</updated>
+    <id>http://emilsjolander.github.io/blog/2013/12/13/android-with-sprinkles</id>
+    <content type="html"><![CDATA[<h1>Testing </h1>
+
+<p>some code
+```go
+func main() {</p>
+
+<p>}
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
