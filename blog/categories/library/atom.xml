@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Library | Emil Sjölander]]></title>
+  <title><![CDATA[Category: library | Emil Sjölander]]></title>
   <link href="http://emilsjolander.github.io/blog/categories/library/atom.xml" rel="self"/>
   <link href="http://emilsjolander.github.io/"/>
-  <updated>2013-12-13T00:41:49+01:00</updated>
+  <updated>2013-12-13T00:51:18+01:00</updated>
   <id>http://emilsjolander.github.io/</id>
   <author>
     <name><![CDATA[Emil Sjölander]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Android With Sprinkles]]></title>
+    <title type="html"><![CDATA[Android with sprinkles]]></title>
     <link href="http://emilsjolander.github.io/blog/2013/12/13/android-with-sprinkles/"/>
     <updated>2013-12-13T00:12:27+01:00</updated>
     <id>http://emilsjolander.github.io/blog/2013/12/13/android-with-sprinkles</id>
