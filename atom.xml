@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://emilsjolander.github.io/atom.xml" rel="self"/>
   <link href="http://emilsjolander.github.io/"/>
-  <updated>2013-12-13T00:11:29+01:00</updated>
+  <updated>2013-12-13T00:13:51+01:00</updated>
   <id>http://emilsjolander.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,5 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Android with sprinkles]]></title>
+    <link href="http://emilsjolander.github.io/blog/2013/12/13/android-with-sprinkles/"/>
+    <updated>2013-12-13T00:12:27+01:00</updated>
+    <id>http://emilsjolander.github.io/blog/2013/12/13/android-with-sprinkles</id>
+    <content type="html"><![CDATA[<h1>Testing </h1>
+
+<p>some code</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
 </feed>
