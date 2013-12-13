@@ -137,8 +137,9 @@
 
         github.showRepos({
             user: 'emilsjolander',
-            count: 3,
+            count: 0,
             skip_forks: true,
+            skip_repos: [ "emilsjolander.github.io", "findme", "gonzales" ],
             target: '#gh_repos'
         });
     });
@@ -171,6 +172,19 @@
 
     			</footer>
     			
+
+<script type="text/javascript">
+      var disqus_shortname = 'emilsjolandergithubio';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
