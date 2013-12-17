@@ -121,7 +121,7 @@ public class NoteTagLink extends Model {
 }
 ```
 
-We are soon finished with out models! Now we just need to add a easy way to update the `Note` models timestamps, we will do this in the `beforeCreate()` and `beforeSave()` callbacks. These callbacks are declared in the `Model` base class and may be overriden. There is also a `beforeDelete()` callback as well as a `isValid()` method that can be overriden to make sure that a model that is not valid is not saved to the database, this method is overriden by the `Tag` model in our sample app. 
+We are soon finished with our models! Now we just need to add a easy way to update the `Note` models timestamps, we will do this in the `beforeCreate()` and `beforeSave()` callbacks. These callbacks are declared in the `Model` base class and may be overriden. There is also a `beforeDelete()` callback as well as a `isValid()` method that can be overriden to make sure that a model that is not valid is not saved to the database, this method is overriden by the `Tag` model in our sample app. 
 
 Adding the above callbacks and some setters/getters to our models give us their final form.
 ```java
@@ -278,7 +278,7 @@ public class MyApplication extends Application {
 </manifest>
 ```
 
-Time to actually migrate the tables. We will start by getting a instance of the `Sprinkles` singleton. We can then create our migration adding both out models to this migration and than adding the migration to the sprinkles object. This is the most basic of migrations but all we need for this example. Sprinkles allowes you to do all the regular migrations through easy methods and also allowes for raw sql migrations when doing more complex migrations. It is important to not change or remove a migration once an app has gone into production, otherwise sprinkles won't know which version of the database to update from/to.
+Time to actually migrate the tables. We will start by getting a instance of the `Sprinkles` singleton. We can then create our migration adding both our models to this migration and than adding the migration to the sprinkles object. This is the most basic of migrations but all we need for this example. Sprinkles allowes you to do all the regular migrations through easy methods and also allowes for raw sql migrations when doing more complex migrations. It is important to not change or remove a migration once an app has gone into production, otherwise sprinkles won't know which version of the database to update from/to.
 ```java
 public class MyApplication extends Application {
 	
@@ -310,7 +310,7 @@ Query.many(Note.class, "select * from Notes order by created_at desc")
 ```
 The above method calls can be divided into two parts, `Query.many()` and `getAsync()`. `Query.many()` initializes a query with a certain type of result, a `Note` in the above example. The second argument is the sql query to execute, this query could contain `?` placeholders for any vararg parameters sent as the last parameters to `Query.many()`. `getAsync()` takes three parameters in the above example. The first is the loadermanager that will manage the loader used to execute the query and the second parameter is the callback that will receive the result of the query. The last parameter (`NoteTagLink.class` is the above example) is a vararg parameter where you can pass any models that this query relies on except the queried model (`Note` in this case), we pass the `NoteTagLink` model into `getAsync()` because we want the query to be refreshed not only when a `Note` is saved/deleted but also when a `NoteTagLink` is saved/deleted. Often times you can skip this last parameter.
 
-The callback that is called when results are loaded recieves a `CursorList` of the correct generic type. A `CursorList` is a wrapper around a cursor so you must remember to call `close()` on it at some point. Otherwise the `CursorList` is very similar to a regular `List`, you may iterate over it using javas enhanced for-loop and it has methods such as `size()` and `get(int index)`. In the callback sent to the previous query we just call `swapNotes()` on the adapter which will close the adapters previous list of results and save a reference to the new list. Notice that the callback returns a boolean, in out case `true`. This return value indicated whether we want to recieve further update in this callback if the underlying data ever changes, for listview data this is usually true.
+The callback that is called when results are loaded recieves a `CursorList` of the correct generic type. A `CursorList` is a wrapper around a cursor so you must remember to call `close()` on it at some point. Otherwise the `CursorList` is very similar to a regular `List`, you may iterate over it using javas enhanced for-loop and it has methods such as `size()` and `get(int index)`. In the callback sent to the previous query we just call `swapNotes()` on the adapter which will close the adapters previous list of results and save a reference to the new list. Notice that the callback returns a boolean, in our case `true`. This return value indicated whether we want to recieve further update in this callback if the underlying data ever changes, for listview data this is usually true.
 ```java
 private ManyQuery.ResultHandler<Note> onNotesLoaded = 
 	new ManyQuery.ResultHandler<Note>() {
