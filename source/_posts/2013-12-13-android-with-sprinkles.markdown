@@ -6,18 +6,17 @@ comments: true
 categories: android library tutorial
 ---
 
-[Sprinkles](https://github.com/emilsjolander/sprinkles) is a android library i made because i was tired of all the boilerplate involved in dealing with SQLite on android. The goal with sprinkles is to remove as much boilerplate as possible without limiting what you can do, this is a crucial point. I find that most ORMs try to abstract away SQL which often leads to unoptimized queries and ugly hacks to get non regular queries to work. Sprinkles lets you do what SQL is great for, querying data. Sprinkles will help you with the tedious parts like inserting data and packing data out of a cursor.
+[Sprinkles](https://github.com/emilsjolander/sprinkles) is a android library I made because I was tired of all the boilerplate involved in dealing with SQLite on android. The goal with sprinkles is to remove as much boilerplate as possible without limiting what you can do, this is a crucial point. I find that most ORMs try to abstract away SQL which often leads to unoptimized queries and ugly hacks to get non regular queries to work. Sprinkles lets you do what SQL is great for, querying data. Sprinkles will help you with the tedious parts like inserting data and packing data out of a cursor.
 
-Below i will give you a basic intro into using sprinkles by building a ... note taking app! Nothing new and exiting, i know! But is is a great sample app for showing the power of sprinkles :) There is a lot of the api that i do not mention in this post so please head over to github and read the full documentation if you have any questions after reading this.
+Below I will give you a basic intro into using sprinkles by building a ... note taking app! Nothing new and exiting, I know! But is is a great sample app for showing the power of sprinkles :) There is a lot of the api that I do not mention in this post so please head over to github and read the full documentation if you have any questions after reading this.
 
 The app
 =======
 The app will be a simple note taking app where you can create multiple notes and multiple tags and asign one or more of these tags to each note. Here are some screenshots of the finished app.
 
-[SCREENSHOT1]
-[SCREENSHOT2]
-[SCREENSHOT3]
-[SCREENSHOT4]
+{% img /images/android-with-sprinkles/screenshot1.png 180 320 %}
+{% img /images/android-with-sprinkles/screenshot2.png 180 320 %}
+{% img /images/android-with-sprinkles/screenshot3.png 180 320 %}
 
 I mostly be covering the parts of the app having to do with sprinkles so I encourage to download and play around the the full source code which you can find [here](https://github.com/emilsjolander/sprinkles/tree/master/sample).
 
@@ -42,7 +41,7 @@ Creating the models
 This app is going to need two main model classes, a `Note` and a `Tag`. A third model that acts as the many-to-many relational link between a `Note` and a `Tag` is also needed (Remember, sprinkles doesn't handle relationships for you. This is by design). Models must subclass the `Model` class found in the sprinkles library. Each `Model` subclass must also be annotated with a `@Table` annotation which specifies the name of the table that the model class corresponds to.
 
 Given this information we can start creating our model classes! Lets create three empty model classes.
-(I have removed the import statements to keep it short, this is something i will do in all future code samples)
+(I have removed the import statements to keep it short, this is something I will do in all future code samples)
 ```java
 @Table("Notes")
 public class Note extends Model {
@@ -243,7 +242,7 @@ public class NoteTagLink extends Model {
 
 Migrating the tables
 ====================
-Now that our models are done we need create the underlying tables in the database, sprinkles makes this trivial! Start by creating a `Application` subclass and registering it in `AndroidManifest.xml`. Migrating tables can be done anywhere in the app but i suggest doing it in the applications `onCreate()` method. To register a custom `Application` subclass add `android:name="MY_APPLICATION_SUBCLASS"` under the application tag in your `AndroidManifest.xml`.
+Now that our models are done we need create the underlying tables in the database, sprinkles makes this trivial! Start by creating a `Application` subclass and registering it in `AndroidManifest.xml`. Migrating tables can be done anywhere in the app but I suggest doing it in the applications `onCreate()` method. To register a custom `Application` subclass add `android:name="MY_APPLICATION_SUBCLASS"` under the application tag in your `AndroidManifest.xml`.
 ```java
 public class MyApplication extends Application {
 
@@ -279,7 +278,7 @@ public class MyApplication extends Application {
 </manifest>
 ```
 
-Time to actually migrate the tables. We will start by getting a instance of the `Sprinkles` singleton, than i create our migration adding both out models to this migration and than adding the migration to the sprinkles object. This is the most basic of migrations but all we need for this example. Sprinkles allowes you to do all the regular migrations through easy methods and also allowes for raw sql migrations when doing more complex migrations.
+Time to actually migrate the tables. We will start by getting a instance of the `Sprinkles` singleton, than I create our migration adding both out models to this migration and than adding the migration to the sprinkles object. This is the most basic of migrations but all we need for this example. Sprinkles allowes you to do all the regular migrations through easy methods and also allowes for raw sql migrations when doing more complex migrations.
 ```java
 public class MyApplication extends Application {
 	
@@ -342,7 +341,7 @@ findViewById(R.id.create).setOnClickListener(new OnClickListener() {
 
 Choosing tags
 =============
-I'll skip showing you how to create tags, you can check that out yourself in the [`CreateTagActivity`](https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/CreateTagActivity.java) class, it's almost exactly like creating a note. Instead i will show you how we can set multiple tags on a note using a `NoteTagLink`, this is done in the [`ChooseTagActivity`](https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/ChooseTagActivity.java) class. This is probably the most complicated part of the application. First we must query all the tags in the database. When receiving the result we swap the tags in the adapter and update what tags are checked (checked tags are attached to notes) we also return true because we want to be updated on if tags are added or removed from the database.
+I'll skip showing you how to create tags, you can check that out yourself in the [`CreateTagActivity`](https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/CreateTagActivity.java) class, it's almost exactly like creating a note. Instead I will show you how we can set multiple tags on a note using a `NoteTagLink`, this is done in the [`ChooseTagActivity`](https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/ChooseTagActivity.java) class. This is probably the most complicated part of the application. First we must query all the tags in the database. When receiving the result we swap the tags in the adapter and update what tags are checked (checked tags are attached to notes) we also return true because we want to be updated on if tags are added or removed from the database.
 ```java
 Query.many(Tag.class, "select * from Tags").getAsync(
 	getLoaderManager(), onTagsLoaded);
@@ -403,8 +402,8 @@ private OnItemClickListener onListItemClicked =
 
 Conclusion
 ==========
-So that was [sprinkles](https://github.com/emilsjolander/sprinkles), i hope you like it! Please star if on github to spread the word and fork + pull request for improvments :)
+So that was [sprinkles](https://github.com/emilsjolander/sprinkles), I hope you like it! Please star if on github to spread the word and fork + pull request for improvments :)
 
 The full source code for the example app can be found on [github](https://github.com/emilsjolander/sprinkles/tree/master/sample).
 
-This was my first post ever so please comment and give me feedback on what i can improve for the next post :)
+This was my first post ever so please comment and give me feedback on what I can improve for the next post :)
