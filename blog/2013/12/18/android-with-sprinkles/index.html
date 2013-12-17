@@ -275,7 +275,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>We are soon finished with our models! Now we just need to add a easy way to update the <code>Note</code> models timestamps, we will do this in the <code>beforeCreate()</code> and <code>beforeSave()</code> callbacks. These callbacks are declared in the <code>Model</code> base class and may be overriden. There is also a <code>beforeDelete()</code> callback as well as a <code>isValid()</code> method that can be overriden to make sure that a model that is not valid is not saved to the database, this method is overriden by the <code>Tag</code> model in our sample app.</p>
+<p>We&rsquo;re soon finished with our models! Now we just need to add an easy way to update the <code>Note</code> models timestamps, we will do this in the <code>beforeCreate()</code> and <code>beforeSave()</code> callbacks. These callbacks are declared in the <code>Model</code> base class and may be overriden. There is also a <code>beforeDelete()</code> callback as well as a <code>isValid()</code> method that can be overriden to make sure that a model that is not valid is not saved to the database, this method is overriden by the <code>Tag</code> model in our sample app.</p>
 
 <p>Adding the above callbacks and some setters/getters to our models give us their final form.</p>
 
@@ -576,7 +576,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Time to actually migrate the tables. We will start by getting a instance of the <code>Sprinkles</code> singleton. We can then create our migration adding both our models to this migration and than adding the migration to the sprinkles object. This is the most basic of migrations but all we need for this example. Sprinkles allowes you to do all the regular migrations through easy methods and also allowes for raw sql migrations when doing more complex migrations. It is important to not change or remove a migration once an app has gone into production, otherwise sprinkles won&rsquo;t know which version of the database to update from/to.</p>
+<p>Time to actually migrate the tables. We will start by getting an instance of the <code>Sprinkles</code> singleton. We can then create our migration adding both our models to this migration and than adding the migration to the sprinkles object. This is the most basic of migrations but all we need for this example. Sprinkles allowes you to do all the regular migrations through easy methods and also allowes for raw sql migrations when doing more complex migrations. It is important to not change or remove a migration once an app has gone into production, otherwise sprinkles won&rsquo;t know which version of the database to update from/to.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
