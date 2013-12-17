@@ -6,7 +6,7 @@ comments: true
 categories: android library tutorial
 ---
 
-[Sprinkles](https://github.com/emilsjolander/sprinkles) is an android library I made because I was tired of all the boilerplate involved in dealing with SQLite on android. The goal with sprinkles is to remove as much boilerplate as possible without limiting any functionality, this is a crucial point. I find that most ORMs try to abstract away SQL which often leads to unoptimized queries and ugly hacks to get the more uncommon queries to work. Sprinkles lets you do what SQL is great for, querying data. Sprinkles will however help you with the tedious parts like inserting data and packing data out of a cursor.
+[Sprinkles](https://github.com/emilsjolander/sprinkles) is an android library I made because I was tired of all the boilerplate involved in dealing with SQLite on android. The goal with sprinkles is to remove as much boilerplate as possible without limiting any functionality, this is a crucial point. I find that most ORMs try to abstract SQL in a way which often leads to unoptimized queries and ugly hacks to get the more uncommon queries to work. Sprinkles lets you do what SQL is great for, querying data. Sprinkles will however help you with the tedious parts like inserting data and packing data out of a cursor.
 
 Below I will give you a basic intro into using sprinkles by building a ... note taking app! Nothing new and exiting, I know! But it's a great sample app for showing the power of sprinkles. There's a lot of the api that I don't mention in this post so please head over to github and read the full documentation if you have any questions after reading this.
 
@@ -326,9 +326,9 @@ private ManyQuery.ResultHandler<Note> onNotesLoaded =
 
 Creating notes
 ==============
-Creating notes is done in the [`CreateNoteActivity`](https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/CreateNoteActivity.java) class. This is just a regular activity with an edittext and a button for saving the note. Below we set the `OnClickListener` of the create button. As you can see saving a note is incredibly simple, just call `save()` after setting the properties you want to set. There is also a `saveAsync()` method which saves the model in the background and a version of `saveAsync()` which takes a callback to notify you when the save has completed.
+Creating notes is done in the [`CreateNoteActivity`](https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/CreateNoteActivity.java) class. This is just a regular activity with an edittext and a button for saving the note. Below we set the `OnClickListener` of the save button. As you can see saving a note is incredibly simple, just call `save()` after setting the properties you want to set. There is also a `saveAsync()` method which saves the model in the background and a version of `saveAsync()` which takes a callback to notify you when the save has completed.
 ```java
-findViewById(R.id.create).setOnClickListener(new OnClickListener() {
+findViewById(R.id.save).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
