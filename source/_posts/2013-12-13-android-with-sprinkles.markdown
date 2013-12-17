@@ -121,7 +121,7 @@ public class NoteTagLink extends Model {
 }
 ```
 
-We are soon finished with our models! Now we just need to add a easy way to update the `Note` models timestamps, we will do this in the `beforeCreate()` and `beforeSave()` callbacks. These callbacks are declared in the `Model` base class and may be overriden. There is also a `beforeDelete()` callback as well as a `isValid()` method that can be overriden to make sure that a model that is not valid is not saved to the database, this method is overriden by the `Tag` model in our sample app. 
+We're soon finished with our models! Now we just need to add an easy way to update the `Note` models timestamps, we will do this in the `beforeCreate()` and `beforeSave()` callbacks. These callbacks are declared in the `Model` base class and may be overriden. There is also a `beforeDelete()` callback as well as a `isValid()` method that can be overriden to make sure that a model that is not valid is not saved to the database, this method is overriden by the `Tag` model in our sample app. 
 
 Adding the above callbacks and some setters/getters to our models give us their final form.
 ```java
@@ -278,7 +278,7 @@ public class MyApplication extends Application {
 </manifest>
 ```
 
-Time to actually migrate the tables. We will start by getting a instance of the `Sprinkles` singleton. We can then create our migration adding both our models to this migration and than adding the migration to the sprinkles object. This is the most basic of migrations but all we need for this example. Sprinkles allowes you to do all the regular migrations through easy methods and also allowes for raw sql migrations when doing more complex migrations. It is important to not change or remove a migration once an app has gone into production, otherwise sprinkles won't know which version of the database to update from/to.
+Time to actually migrate the tables. We will start by getting an instance of the `Sprinkles` singleton. We can then create our migration adding both our models to this migration and than adding the migration to the sprinkles object. This is the most basic of migrations but all we need for this example. Sprinkles allowes you to do all the regular migrations through easy methods and also allowes for raw sql migrations when doing more complex migrations. It is important to not change or remove a migration once an app has gone into production, otherwise sprinkles won't know which version of the database to update from/to.
 ```java
 public class MyApplication extends Application {
 	
