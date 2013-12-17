@@ -4,7 +4,7 @@
   <title><![CDATA[Emil Sjölander]]></title>
   <link href="http://emilsjolander.github.io/atom.xml" rel="self"/>
   <link href="http://emilsjolander.github.io/"/>
-  <updated>2013-12-17T14:19:55+01:00</updated>
+  <updated>2013-12-17T19:03:00+01:00</updated>
   <id>http://emilsjolander.github.io/</id>
   <author>
     <name><![CDATA[Emil Sjölander]]></name>
@@ -18,23 +18,23 @@
     <link href="http://emilsjolander.github.io/blog/2013/12/18/android-with-sprinkles/"/>
     <updated>2013-12-18T00:12:27+01:00</updated>
     <id>http://emilsjolander.github.io/blog/2013/12/18/android-with-sprinkles</id>
-    <content type="html"><![CDATA[<p><a href="https://github.com/emilsjolander/sprinkles">Sprinkles</a> is a android library I made because I was tired of all the boilerplate involved in dealing with SQLite on android. The goal with sprinkles is to remove as much boilerplate as possible without limiting what you can do, this is a crucial point. I find that most ORMs try to abstract away SQL which often leads to unoptimized queries and ugly hacks to get non regular queries to work. Sprinkles lets you do what SQL is great for, querying data. Sprinkles will help you with the tedious parts like inserting data and packing data out of a cursor.</p>
+    <content type="html"><![CDATA[<p><a href="https://github.com/emilsjolander/sprinkles">Sprinkles</a> is an android library I made because I was tired of all the boilerplate involved in dealing with SQLite on android. The goal with sprinkles is to remove as much boilerplate as possible without limiting any functionality, this is a crucial point. I find that most ORMs try to abstract away SQL which often leads to unoptimized queries and ugly hacks to get the more uncommon queries to work. Sprinkles lets you do what SQL is great for, querying data. Sprinkles will however help you with the tedious parts like inserting data and packing data out of a cursor.</p>
 
-<p>Below I will give you a basic intro into using sprinkles by building a &hellip; note taking app! Nothing new and exiting, I know! But is is a great sample app for showing the power of sprinkles :) There is a lot of the api that I do not mention in this post so please head over to github and read the full documentation if you have any questions after reading this.</p>
+<p>Below I will give you a basic intro into using sprinkles by building a &hellip; note taking app! Nothing new and exiting, I know! But it&rsquo;s a great sample app for showing the power of sprinkles. There&rsquo;s a lot of the api that I don&rsquo;t mention in this post so please head over to github and read the full documentation if you have any questions after reading this.</p>
 
 <h1>The app</h1>
 
-<p>The app will be a simple note taking app where you can create multiple notes and multiple tags and asign one or more of these tags to each note. Here are some screenshots of the finished app.</p>
+<p>The app will be a simple note taking app where you can create multiple notes and multiple tags which you can asign one or more of to each note. Here are some screenshots of the finished app.</p>
 
 <p><img src="http://emilsjolander.github.io/images/android-with-sprinkles/screenshot1.png" width="180" height="320">
 <img src="http://emilsjolander.github.io/images/android-with-sprinkles/screenshot2.png" width="180" height="320">
 <img src="http://emilsjolander.github.io/images/android-with-sprinkles/screenshot3.png" width="180" height="320"></p>
 
-<p>I mostly be covering the parts of the app having to do with sprinkles so I encourage to download and play around the the full source code which you can find <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample">here</a>.</p>
+<p>I will mostly be covering the parts of the app having to do with sprinkles so I encourage you to download and play around the the full source code which you can find <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample">here</a>.</p>
 
 <h1>Including the library</h1>
 
-<p>The easiest way to start using sprinkles is to include it the library your build.gradle file like this.</p>
+<p>The easiest way to start using sprinkles is to include the library as a gradle dependecy in your build.gradle file like this.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -47,18 +47,18 @@
 
 <p>The version of sprinkles used in this blog post is version <code>1.0.0</code>, remember to check the github release tab for the latest version when building your app.</p>
 
-<p>If you are not using gradle(android studio defaults to using gradle) than you are probably using eclipse. If this is the case just clone the the project like this.</p>
+<p>If you are not using gradle (android studio defaults to using gradle) than you are probably using eclipse. If this is the case just clone the the project like this.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone https://github.com/emilsjolander/sprinkles.git
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>After you have cloned the library you will have to import the library folder as a android project in eclipse. Once this is done add the project as a lirbary dependency in the project settings menu of eclipse.</p>
+<p>After you have cloned the library you will have to import the library folder as an android project in eclipse. Once this is done add the project as a library dependency in the project settings menu of eclipse.</p>
 
 <h1>Creating the models</h1>
 
-<p>This app is going to need two main model classes, a <code>Note</code> and a <code>Tag</code>. A third model that acts as the many-to-many relational link between a <code>Note</code> and a <code>Tag</code> is also needed (Remember, sprinkles doesn&rsquo;t handle relationships for you. This is by design). Models must subclass the <code>Model</code> class found in the sprinkles library. Each <code>Model</code> subclass must also be annotated with a <code>@Table</code> annotation which specifies the name of the table that the model class corresponds to.</p>
+<p>This app is going to need two main model classes, a <code>Note</code> and a <code>Tag</code>. A third model that acts as the many-to-many relational link between a <code>Note</code> and a <code>Tag</code> is also needed (sprinkles doesn&rsquo;t handle relationships for you. This is by design). Models must subclass the <code>Model</code> class found in the sprinkles library. Each <code>Model</code> subclass must also be annotated with a <code>@Table</code> annotation which specifies the name of the table that the model class corresponds to.</p>
 
 <p>Given this information we can start creating our model classes! Lets create three empty model classes.
 (I have removed the import statements to keep it short, this is something I will do in all future code samples)</p>
@@ -121,7 +121,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Sprinkles doesn&rsquo;t yet know about these properties, let&rsquo;s fix that. To let sprinkles know that these properties correspond to field in the database we must annotate each property with the <code>@Column</code> annotation. The <code>@Column</code> annotation takes a string parameter which is the name of the column corresponding to the annotated property. We will also add a @AutoIncrementPrimaryKey annotation to the id property. This will ensure that the models id property is a unique identifier which will automatically be assigned.</p>
+<p>Sprinkles doesn&rsquo;t yet know about these properties, let&rsquo;s fix that. To let sprinkles know that these properties correspond to fields in the database we must annotate each property with the <code>@Column</code> annotation. The <code>@Column</code> annotation takes a string parameter which is the name of the column corresponding to the annotated property. We will also add a @AutoIncrementPrimaryKey annotation to the id property. This will ensure that the models id property is a unique identifier which will automatically be assigned when a new instance is inserted into the database.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -171,7 +171,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>The last model which is the <code>NoteTagLink</code> model introduces two new annotations. The @ForeignKey annotation marks the annotated column as a foreign key which references the table+column given as an argument to the annotation (See the sample code below for syntax, here note_id references the id column in the Notes table). The other new annotation is the @CascadeDelete annotation which may be used in conjunction the @ForeignKey to tell the underlying database to perform a cascade delete when the referenced foreign table row is deleted.</p>
+<p>The last model which is the <code>NoteTagLink</code> model introduces two new annotations. The @ForeignKey annotation marks the annotated column as a foreign key which references the table+column given as an argument to the annotation (See the sample code below for syntax, here note_id references the id column in the Notes table). The other new annotation is the @CascadeDelete annotation which may be used in conjunction with the @ForeignKey annotation to tell the underlying database to perform a cascade delete when the referenced foreign table row is deleted.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -437,7 +437,7 @@
 
 <h1>Migrating the tables</h1>
 
-<p>Now that our models are done we need create the underlying tables in the database, sprinkles makes this trivial! Start by creating a <code>Application</code> subclass and registering it in <code>AndroidManifest.xml</code>. Migrating tables can be done anywhere in the app but I suggest doing it in the applications <code>onCreate()</code> method. To register a custom <code>Application</code> subclass add <code>android:name="MY_APPLICATION_SUBCLASS"</code> under the application tag in your <code>AndroidManifest.xml</code>.</p>
+<p>Now that our models are done we need to create the underlying tables in the database, sprinkles makes this trivial! Start by creating an <code>Application</code> subclass and registering it in your <code>AndroidManifest.xml</code>. Migrating tables can be done anywhere in the app but I suggest doing it in the <code>onCreate()</code> method of an <code>Application</code> subclass. To register a custom <code>Application</code> subclass add <code>android:name="MY_APPLICATION_SUBCLASS"</code> under the application tag in your <code>AndroidManifest.xml</code>.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -505,7 +505,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Time to actually migrate the tables. We will start by getting a instance of the <code>Sprinkles</code> singleton, than I create our migration adding both out models to this migration and than adding the migration to the sprinkles object. This is the most basic of migrations but all we need for this example. Sprinkles allowes you to do all the regular migrations through easy methods and also allowes for raw sql migrations when doing more complex migrations.</p>
+<p>Time to actually migrate the tables. We will start by getting a instance of the <code>Sprinkles</code> singleton. We can then create our migration adding both out models to this migration and than adding the migration to the sprinkles object. This is the most basic of migrations but all we need for this example. Sprinkles allowes you to do all the regular migrations through easy methods and also allowes for raw sql migrations when doing more complex migrations. It is important to not change or remove a migration once an app has gone into production, otherwise sprinkles won&rsquo;t know which version of the database to update from/to.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -544,7 +544,7 @@
 
 <h1>Listing notes</h1>
 
-<p><a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/NotesActivity.java"><code>NotesActivity</code></a> is responsible for listing all the notes currently in the database. It&rsquo;s an activity containing only a listview and a action bar button to create a new list.</p>
+<p><a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/NotesActivity.java"><code>NotesActivity</code></a> is responsible for listing all the notes currently in the database. It&rsquo;s an activity containing only a listview and an action bar item used to create a new list.</p>
 
 <p>The following code executes a query returning all the notes in the database ordered by the time they were created.</p>
 
@@ -557,9 +557,9 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>The above method call can be divided into two parts, <code>Query.many()</code> and <code>getAsync()</code>. <code>Query.many()</code> initializes a query with a certain type of result, a <code>Note</code> in the above example. The second argument is the sql query to execute, this query could contain <code>?</code> placeholders for any varargs parameters sent as the last parameters to <code>Query.many()</code>. <code>getAsync()</code> takes three parameters in the above example. The first is the loadermanager used to execute the query with and the second parameter is the callback that will receive the result of the query. The last parameter (<code>NoteTagLink.class</code> is the above example) is a vararg parameter where you can pass any models that this query relies on except the queried model (<code>Note</code> in this case), we pass the <code>NoteTagLink</code> model into <code>getAsync()</code> because we want the query to be refreshed not only when a <code>Note</code> is saved/deleted but also when a <code>NoteTagLink</code> is saved/deleted. Often times you can skip this last parameter.</p>
+<p>The above method calls can be divided into two parts, <code>Query.many()</code> and <code>getAsync()</code>. <code>Query.many()</code> initializes a query with a certain type of result, a <code>Note</code> in the above example. The second argument is the sql query to execute, this query could contain <code>?</code> placeholders for any vararg parameters sent as the last parameters to <code>Query.many()</code>. <code>getAsync()</code> takes three parameters in the above example. The first is the loadermanager that will manage the loader used to execute the query and the second parameter is the callback that will receive the result of the query. The last parameter (<code>NoteTagLink.class</code> is the above example) is a vararg parameter where you can pass any models that this query relies on except the queried model (<code>Note</code> in this case), we pass the <code>NoteTagLink</code> model into <code>getAsync()</code> because we want the query to be refreshed not only when a <code>Note</code> is saved/deleted but also when a <code>NoteTagLink</code> is saved/deleted. Often times you can skip this last parameter.</p>
 
-<p>The callback that is called when results are loaded recieves a <code>CursorList</code> of the correct generic type. A <code>CursorList</code> is a wrapper around a cursor so you must remember to call <code>close()</code> on it at some point. Otherwise the <code>CursorList</code> is very similar to a regular <code>List</code>, you may iterate over it using javas enhanced for loop and it has methods such as <code>size()</code> and <code>get(int index)</code>. In the callback sent to the previous query we just call <code>swapNotes()</code> on the adapter which will close the adapters previous list of results. Notice that the callback returns a boolean, in out case <code>true</code>. This return value indicated whether we want to recieve further update in this callback if the underlying data ever changes, for lists this is usually true.</p>
+<p>The callback that is called when results are loaded recieves a <code>CursorList</code> of the correct generic type. A <code>CursorList</code> is a wrapper around a cursor so you must remember to call <code>close()</code> on it at some point. Otherwise the <code>CursorList</code> is very similar to a regular <code>List</code>, you may iterate over it using javas enhanced for-loop and it has methods such as <code>size()</code> and <code>get(int index)</code>. In the callback sent to the previous query we just call <code>swapNotes()</code> on the adapter which will close the adapters previous list of results and save a reference to the new list. Notice that the callback returns a boolean, in out case <code>true</code>. This return value indicated whether we want to recieve further update in this callback if the underlying data ever changes, for listview data this is usually true.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -586,7 +586,7 @@
 
 <h1>Creating notes</h1>
 
-<p>Creating notes is done in the <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/CreateNoteActivity.java"><code>CreateNoteActivity</code></a> class. This is just a regular activity with a edittext and a button for saving the note. Below we set the <code>OnClickListener</code> of the create button. As you can see saving a note is incredibly simple, just call <code>save()</code> after setting the properties you want to set. There is also a <code>saveAsync()</code> method which saves the model in the background and a version of <code>saveAsync()</code> which takes a callback to notify you when the save has completed.</p>
+<p>Creating notes is done in the <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/CreateNoteActivity.java"><code>CreateNoteActivity</code></a> class. This is just a regular activity with an edittext and a button for saving the note. Below we set the <code>OnClickListener</code> of the create button. As you can see saving a note is incredibly simple, just call <code>save()</code> after setting the properties you want to set. There is also a <code>saveAsync()</code> method which saves the model in the background and a version of <code>saveAsync()</code> which takes a callback to notify you when the save has completed.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -611,7 +611,7 @@
 
 <h1>Choosing tags</h1>
 
-<p>I&rsquo;ll skip showing you how to create tags, you can check that out yourself in the <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/CreateTagActivity.java"><code>CreateTagActivity</code></a> class, it&rsquo;s almost exactly like creating a note. Instead I will show you how we can set multiple tags on a note using a <code>NoteTagLink</code>, this is done in the <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/ChooseTagActivity.java"><code>ChooseTagActivity</code></a> class. This is probably the most complicated part of the application. First we must query all the tags in the database. When receiving the result we swap the tags in the adapter and update what tags are checked (checked tags are attached to notes) we also return true because we want to be updated on if tags are added or removed from the database.</p>
+<p>I&rsquo;ll skip showing you how to create tags, you can check that out yourself in the <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/CreateTagActivity.java"><code>CreateTagActivity</code></a> class, it&rsquo;s almost exactly like creating a note. Instead I will show you how we can set multiple tags on a note using a <code>NoteTagLink</code>, this is done in the <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/ChooseTagActivity.java"><code>ChooseTagActivity</code></a> class. First we must query all the tags in the database. When receiving the result we swap the tags in the adapter and update what tags are checked (checked tags are attached to the note we are editing) we also return true because we want the results to update if tags are added or removed from the database.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -645,7 +645,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Next we have to query all the links which attach the given note to a tag, notice how we wan to get updates on links when <code>Note</code> and <code>Tag</code> models are updated as well (the last arguments to <code>getAsync()</code>). When we get the results we close the old list containing links and than update the checked tags.</p>
+<p>Next we have to query all the links between the given note and any tag, notice how we want to get updates on links when <code>Note</code> and <code>Tag</code> models are updated as well (the last arguments to <code>getAsync()</code>). When we get the results we close the old list containing links and than update the checked tags.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -685,7 +685,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>ok that wasn&rsquo;t too complicated! If you want to know how <code>updateCheckedPositions()</code> works just check the <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/ChooseTagActivity.java"><code>source</code></a>. There is one last thing we need to do before we are done! When a tag is clicked we need to add/remove the corrosponding <code>NoteTagLink</code> from the database. Notice how we don&rsquo;t update the checked status! Remember that we returned true from our <code>ResultHandler</code> that queried the links, this results in the result handler being called again when a <code>NoteTagLink</code> is saved or deleted which in turn results in the checked status of the list being updated.</p>
+<p>Ok that wasn&rsquo;t too complicated! If you want to know how <code>updateCheckedPositions()</code> works just check the <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/ChooseTagActivity.java"><code>source</code></a>. There is one last thing we need to do before we are done! When a tag is clicked we need to add/remove the corrosponding <code>NoteTagLink</code> from the database. Notice how we don&rsquo;t update the checked status! This is because we returned true from our <code>ResultHandler</code> that queried the links, this will result in the result handler being called again when a <code>NoteTagLink</code> is saved or deleted which in turn results in the checked status of the list being updated.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -720,7 +720,7 @@
 
 <h1>Conclusion</h1>
 
-<p>So that was <a href="https://github.com/emilsjolander/sprinkles">sprinkles</a>, I hope you like it! Please star if on github to spread the word and fork + pull request for improvments :)</p>
+<p>So that was <a href="https://github.com/emilsjolander/sprinkles">sprinkles</a>, I hope you like it! Please star it on github to spread the word and fork + pull request for improvements :)</p>
 
 <p>The full source code for the example app can be found on <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample">github</a>.</p>
 
