@@ -4,7 +4,7 @@
   <title><![CDATA[Category: android | Emil Sjölander]]></title>
   <link href="http://emilsjolander.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://emilsjolander.github.io/"/>
-  <updated>2013-12-17T19:03:00+01:00</updated>
+  <updated>2013-12-17T20:09:34+01:00</updated>
   <id>http://emilsjolander.github.io/</id>
   <author>
     <name><![CDATA[Emil Sjölander]]></name>
@@ -18,7 +18,7 @@
     <link href="http://emilsjolander.github.io/blog/2013/12/18/android-with-sprinkles/"/>
     <updated>2013-12-18T00:12:27+01:00</updated>
     <id>http://emilsjolander.github.io/blog/2013/12/18/android-with-sprinkles</id>
-    <content type="html"><![CDATA[<p><a href="https://github.com/emilsjolander/sprinkles">Sprinkles</a> is an android library I made because I was tired of all the boilerplate involved in dealing with SQLite on android. The goal with sprinkles is to remove as much boilerplate as possible without limiting any functionality, this is a crucial point. I find that most ORMs try to abstract away SQL which often leads to unoptimized queries and ugly hacks to get the more uncommon queries to work. Sprinkles lets you do what SQL is great for, querying data. Sprinkles will however help you with the tedious parts like inserting data and packing data out of a cursor.</p>
+    <content type="html"><![CDATA[<p><a href="https://github.com/emilsjolander/sprinkles">Sprinkles</a> is an android library I made because I was tired of all the boilerplate involved in dealing with SQLite on android. The goal with sprinkles is to remove as much boilerplate as possible without limiting any functionality, this is a crucial point. I find that most ORMs try to abstract SQL in a way which often leads to unoptimized queries and ugly hacks to get the more uncommon queries to work. Sprinkles lets you do what SQL is great for, querying data. Sprinkles will however help you with the tedious parts like inserting data and packing data out of a cursor.</p>
 
 <p>Below I will give you a basic intro into using sprinkles by building a &hellip; note taking app! Nothing new and exiting, I know! But it&rsquo;s a great sample app for showing the power of sprinkles. There&rsquo;s a lot of the api that I don&rsquo;t mention in this post so please head over to github and read the full documentation if you have any questions after reading this.</p>
 
@@ -358,9 +358,9 @@ private ManyQuery.ResultHandler<Note> onNotesLoaded =</p>
 
 <h1>Creating notes</h1>
 
-<p>Creating notes is done in the <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/CreateNoteActivity.java"><code>CreateNoteActivity</code></a> class. This is just a regular activity with an edittext and a button for saving the note. Below we set the <code>OnClickListener</code> of the create button. As you can see saving a note is incredibly simple, just call <code>save()</code> after setting the properties you want to set. There is also a <code>saveAsync()</code> method which saves the model in the background and a version of <code>saveAsync()</code> which takes a callback to notify you when the save has completed.
+<p>Creating notes is done in the <a href="https://github.com/emilsjolander/sprinkles/tree/master/sample/src/se/emilsjolander/sprinkles/CreateNoteActivity.java"><code>CreateNoteActivity</code></a> class. This is just a regular activity with an edittext and a button for saving the note. Below we set the <code>OnClickListener</code> of the save button. As you can see saving a note is incredibly simple, just call <code>save()</code> after setting the properties you want to set. There is also a <code>saveAsync()</code> method which saves the model in the background and a version of <code>saveAsync()</code> which takes a callback to notify you when the save has completed.
 ```java
-findViewById(R.id.create).setOnClickListener(new OnClickListener() {</p>
+findViewById(R.id.save).setOnClickListener(new OnClickListener() {</p>
 
 <pre><code>        @Override
         public void onClick(View v) {
