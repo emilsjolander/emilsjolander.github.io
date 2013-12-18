@@ -121,7 +121,7 @@ public class NoteTagLink extends Model {
 }
 ```
 
-We're soon finished with our models! Now we just need to add an easy way to update the `Note` models timestamps, we will do this in the `beforeCreate()` and `beforeSave()` callbacks. These callbacks are declared in the `Model` base class and may be overriden. There is also a `beforeDelete()` callback as well as a `isValid()` method that can be overriden to make sure that a model that is not valid is not saved to the database, this method is overriden by the `Tag` model in our sample app. 
+We're soon finished with our models! Now we just need to add an easy way to update the `Note` models timestamps, we will do this in the `beforeCreate()` and `beforeSave()` callbacks. These callbacks are declared in the `Model` base class and may be overriden. There is also a `afterDelete()` callback as well as a `isValid()` method that can be overriden to make sure that a model that is not valid is not saved to the database, this method is overriden by the `Tag` model in our sample app. 
 
 Adding the above callbacks and some setters/getters to our models give us their final form.
 ```java
