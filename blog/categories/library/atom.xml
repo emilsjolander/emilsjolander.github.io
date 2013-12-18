@@ -4,7 +4,7 @@
   <title><![CDATA[Category: library | Emil Sjölander]]></title>
   <link href="http://emilsjolander.github.io/blog/categories/library/atom.xml" rel="self"/>
   <link href="http://emilsjolander.github.io/"/>
-  <updated>2013-12-18T00:23:02+01:00</updated>
+  <updated>2013-12-18T11:01:44+01:00</updated>
   <id>http://emilsjolander.github.io/</id>
   <author>
     <name><![CDATA[Emil Sjölander]]></name>
@@ -140,7 +140,7 @@ public class NoteTagLink extends Model {</p>
 <p>}
 ```</p>
 
-<p>We&rsquo;re soon finished with our models! Now we just need to add an easy way to update the <code>Note</code> models timestamps, we will do this in the <code>beforeCreate()</code> and <code>beforeSave()</code> callbacks. These callbacks are declared in the <code>Model</code> base class and may be overriden. There is also a <code>beforeDelete()</code> callback as well as a <code>isValid()</code> method that can be overriden to make sure that a model that is not valid is not saved to the database, this method is overriden by the <code>Tag</code> model in our sample app.</p>
+<p>We&rsquo;re soon finished with our models! Now we just need to add an easy way to update the <code>Note</code> models timestamps, we will do this in the <code>beforeCreate()</code> and <code>beforeSave()</code> callbacks. These callbacks are declared in the <code>Model</code> base class and may be overriden. There is also a <code>afterDelete()</code> callback as well as a <code>isValid()</code> method that can be overriden to make sure that a model that is not valid is not saved to the database, this method is overriden by the <code>Tag</code> model in our sample app.</p>
 
 <p>Adding the above callbacks and some setters/getters to our models give us their final form.
 ```java
